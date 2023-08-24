@@ -1,12 +1,12 @@
 numba
-progress
+progress==1.6
 matplotlib
 scipy>=1.4.1
-torch==1.1.0
-torchvision==0.3.0
+torch==1.13.1
+torchvision==0.14.1
 albumentations
 pyrr
-simplejson
+simplejson==3.19.1
 tqdm
 opencv-python>=4.5.3.56
 numpy
