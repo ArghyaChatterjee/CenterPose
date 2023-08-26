@@ -1,4 +1,4 @@
-numba
+numba==0.57.1
 progress==1.6
 matplotlib
 scipy>=1.4.1

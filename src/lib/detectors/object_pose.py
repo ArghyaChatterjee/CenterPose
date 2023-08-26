@@ -58,7 +58,7 @@ def soft_nms_nvidia(src_boxes, sigma=0.5, Nt=0.3, threshold=0.001, method=0):
         src_boxes[maxpos]['score'] = ts
 
         for key in src_boxes[0]:
-            if key is not 'bbox' and key is not 'score':
+            if key != 'bbox' and key != 'score':
                 tmp = src_boxes[i][key]
                 src_boxes[i][key] = src_boxes[maxpos][key]
                 src_boxes[maxpos][key] = tmp
@@ -110,7 +110,7 @@ def soft_nms_nvidia(src_boxes, sigma=0.5, Nt=0.3, threshold=0.001, method=0):
                         src_boxes[pos]['score'] = src_boxes[N - 1]['score']
 
                         for key in src_boxes[0]:
-                            if key is not 'bbox' and key is not 'score':
+                            if key != 'bbox' and key != 'score':
                                 tmp = src_boxes[pos][key]
                                 src_boxes[pos][key] = src_boxes[N - 1][key]
                                 src_boxes[N - 1][key] = tmp
@@ -405,10 +405,15 @@ class ObjectPoseDetector(BaseDetector):
         if not os.path.exists(target_dir_path):
             os.mkdir(target_dir_path)
 
-        debugger.save_all_imgs_demo(image_or_path_or_tensor, path=target_dir_path)
+        # debugger.save_all_imgs_demo(image_or_path_or_tensor, path=target_dir_path)
 
         if dict_out is not None:
-            file_id_name = os.path.splitext(os.path.basename(image_or_path_or_tensor))[0]
+            # file_id_name = os.path.splitext(os.path.basename(image_or_path_or_tensor))[0]
+            if isinstance(image_or_path_or_tensor, np.ndarray):
+                file_id_name = f"image_{int(time.time())}"
+            else:
+                file_id_name = os.path.splitext(os.path.basename(image_or_path_or_tensor))[0]
+
 
             with open(f"{target_dir_path}/{file_id_name}.json", 'w') as fp:
                 json.dump(dict_out, fp)

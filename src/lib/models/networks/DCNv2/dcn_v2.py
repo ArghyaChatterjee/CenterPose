@@ -3,6 +3,10 @@ from __future__ import absolute_import, division, print_function
 
 import math
 
+import os
+import sys
+sys.path.append(os.path.expanduser('~/centerpose_ws/src/center_pose/CenterPose/src/lib/models/networks/DCNv2'))
+
 import torch
 from torch import nn
 from torch.autograd import Function

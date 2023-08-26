@@ -23,17 +23,30 @@ The code was tested on Ubuntu 22.04, Python 3.10 and [PyTorch]((http://pytorch.o
     ./make.sh
     ~~~
 
-3. Download [CenterPose pre-trained models](https://drive.google.com/drive/folders/16HbCnUlCaPcTg4opHP_wQNPsWouUlVZe?usp=sharing) and move all the `.pth` files to `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/models/`.  Similarly, download our [CenterPoseTrack pre-trained models](https://drive.google.com/drive/folders/1zOryfHI7ab2Qsyg3rs-zP3ViblknfzGy?usp=sharing) and move all the `.pth` files to `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/models/CenterPoseTrack/`. 9 categories are provided currently: bike, book, bottle, camera, cereal_box, chair, cup, laptop, and shoe. 
+3. Download [CenterPose pre-trained models](https://drive.google.com/drive/folders/16HbCnUlCaPcTg4opHP_wQNPsWouUlVZe?usp=sharing) and move all the `.pth` files to `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/models/`.  Similarly, download our [CenterPoseTrack pre-trained models](https://drive.google.com/drive/folders/1zOryfHI7ab2Qsyg3rs-zP3ViblknfzGy?usp=sharing) and move all the `.pth` files to `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/models/CenterPoseTrack/`.
+A total of 9 categories are provided currently:
+```
+'bike': 0, 
+'book': 1,
+'bottle': 2, 
+'camera': 3,
+'cerealbox': 4, 
+'chair': 5, 
+'cup': 6,
+'laptop': 7, 
+'shoe': 8
+``` 
 
-4. Prepare training/testing data
-
-    Save all the training/testing data under `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/data/`.
-
-    For the [Objectron](https://github.com/google-research-datasets/Objectron) dataset, we created our own data pre-processor to extract the data for training/testing. Refer to the [data directory](data/README.md) for more details.
+5. Prepare training/testing data
+Save all the training/testing data under `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/data/`.
+For the [Objectron](https://github.com/google-research-datasets/Objectron) dataset, we created our own data pre-processor to extract the data for training/testing. Refer to the [data directory](data/README.md) for more details.
 
 ## Demo
 
-We provide supporting demos for image, videos, webcam, and image folders. See `~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/images/CenterPose`
+We provide supporting demos for image, videos, webcam, and image folders. See 
+```
+~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/images/CenterPose
+```
 
 For category-level 6-DoF object estimation on images/video/image folders, run:
 
@@ -53,13 +66,13 @@ You can also enable `--debug 2` to display more intermediate outputs or `--debug
 For the webcam demo (You may want to specify the camera intrinsics via --cam_intrinsic), run:
 ```
 cd ~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/src
-python demo.py --demo webcam --arch dlav1_34 --load_model ../path/to/model
+python demo.py --demo webcam --arch dlav1_34 --load_model ~/centerpose_ws/src/center_pose/CenterPose/models/cup_mug_v1_140.pth
 ```
 
 Similarly, for tracking, run:
 ```
 cd ~/center_pose_ws/src/center_pose_ros2/scripts/CenterPose/src
-python demo.py --demo webcam --arch dla_34 --load_model ../path/to/model --tracking_task
+python demo.py --demo webcam --arch dla_34 --load_model ~/centerpose_ws/src/center_pose/CenterPose/models/cup_mug_v1_140.pth --tracking_task
 ```
 
 ## Training
@@ -85,4 +98,3 @@ tensorboard --logdir=logs --host=XX.XX.XX.XX
 ## Evaluation
 
 We evaluate our method on the [Objectron](https://github.com/google-research-datasets/Objectron) dataset, please refer to the [objectron_eval directory](src/tools/objectron_eval/README.md) for more details.
-

@@ -17,6 +17,8 @@ def pnp_shell(opt, meta, bbox, points_filtered, scale, OPENCV_RETURN = False):
             cuboid3d=cuboid3d
         )
     pnp_solver.set_camera_intrinsic_matrix(meta['camera_matrix'])
+    # obj_name = pnp_solver.object_name
+
 
     location, quaternion, projected_points, reprojectionError = pnp_solver.solve_pnp(
         points_filtered, OPENCV_RETURN=OPENCV_RETURN)  # N * 2
@@ -88,6 +90,6 @@ def pnp_shell(opt, meta, bbox, points_filtered, scale, OPENCV_RETURN = False):
         points_ori[:, 1] = points_ori[:, 1] / meta['height']
 
         # keypoint_2d_pnp, keypoint_3d, predicted_scale, keypoint_2d_ori, result_ori for debug
-        return projected_points, point_3d_cam, np.array(bbox['obj_scale']), points_ori, bbox
+        return projected_points, point_3d_cam, np.array(bbox['obj_scale']), points_ori, bbox # ,obj_name
 
     return

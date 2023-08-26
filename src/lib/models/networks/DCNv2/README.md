@@ -1,26 +1,16 @@
 # DCNv2 latest
 
-- Add support for pytorch1.11 (may be not backward-compatible). 
-- Test on ubuntu20.04, python3.8(conda), cuda_11.4
+- Test on ubuntu22.04, python3.10.1, cuda_11.7
 
-It was confirmed that pytorch1.11 worked, but not compatible with previous pytorch version. If you want pytorch1.10 or earlier, please using pytorch1.6 branch, or using last git commit.
+It was confirmed that pytorch 1.13 worked, but not compatible with previous pytorch version. 
 
-It's suggested using latest stable pytorch 1.11 to start your project.
+It's suggested using latest stable pytorch 1.13 to start your project.
 
 
 ## Install
 
 ```bash
-$ python3 setup.py build develop
+$ python3 setup.py build develop --user
 ```
+DCNv2 will be installed here: /home/user/.local/lib/python3.8/site-packages/DCNv2.egg-link
 
-## Updates
-
-- **2021.03.24**: It was confirmed PyTorch 1.8 is OK with master branch, feel free to use it.
-- **2021.02.18**: Happy new year! PyTorch 1.7 finally supported on master branch! **for lower version theoretically also works, if not, pls fire an issue to me!**.
-- **2020.09.23**: Now master branch works for pytorch 1.6 by default, for older version you gonna need separated one.
-- **2020.08.25**: Check out pytorch1.6 branch for pytorch 1.6 support, you will meet an error like `THCudaBlas_Sgemv undefined` if you using pytorch 1.6 build master branch. master branch now work for pytorch 1.5;
-
-## Contact
-
-If you have any question, please using this platform post questions: http://t.manaai.cn
